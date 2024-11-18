@@ -12,11 +12,14 @@ int main() {
     float graySize = grayScaleImage(width, height);
     printf("Taille de l'image en niveaux de gris (en bytes) : %.2f\n", graySize);
 
-    // Test de la fonction coloredBitmap
-    char* unit = "mo";  // Unité: mégaoctets
+     // Test de la fonction coloredBitmap
+    char* unit = "mo";  // Unité : mégaoctets
     float coloredSize = coloredBitmap(width, height, unit);
-    printf("Taille de l'image colorée (%s) : %.2f\n", unit, coloredSize);
-
+    if (coloredSize >= 0) {
+        printf("Taille de l'image colorée (%s) : %.2f\n", unit, coloredSize);
+    } else {
+        printf("Erreur : paramètres invalides ou unité incorrecte pour l'image colorée\n");
+    }
     // Exemple de vidéo
     int durationMovie = 120;  // Durée du film (en secondes)
     int durationCredits = 30;  // Durée des crédits (en secondes)
@@ -24,7 +27,11 @@ int main() {
 
     // Test de la fonction video
     float videoSize = video(width, height, durationMovie, durationCredits, fps, unit);
-    printf("Taille de la vidéo (%s) : %.2f\n", unit, videoSize);
+    if (videoSize >= 0) {
+        printf("Taille de la vidéo (%s) : %.2f\n", unit, videoSize);
+    } else {
+        printf("Erreur : paramètres invalides ou unité incorrecte pour la vidéo\n");
+    }
 
     return 0;
 }
